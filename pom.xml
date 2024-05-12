@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.ste</groupId>
 	<artifactId>payroll</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+<!--	<version>0.0.1-SNAPSHOT</version>-->
+	<version>0.3</version>
 	<name>payroll</name>
 	<description>Demo project for Kubernetes</description>
 	<properties>
@@ -49,6 +50,34 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.2</version>
+				<configuration>
+					<from>
+						<image>openjdk:17</image>
+					</from>
+					<to>
+						<image>harbor.itcpdev.mrr.ste.com/demo/${project.name}:${project.version}</image>
+						<auth>
+							<username>itcpdevops</username>
+							<password>Deployment2itcp</password>
+						</auth>
+					</to>
+					<allowInsecureRegistries>true</allowInsecureRegistries>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 

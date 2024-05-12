@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payroll
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payroll
+  template:
+    metadata:
+      labels:
+        app: payroll
+    spec:
+      containers:
+        - name: payroll
+          image: harbor.itcpdev.mrr.ste.com/demo/payroll:0.2
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: debug-port
+              containerPort: 5005
+              protocol: TCP
+          env:
+            - name: JAVA_TOOL_OPTIONS
+              value: '-Xdebug -agentlib:jdwp=transport=dt_socket,address=0.0.0.0:5005,server=y,suspend=n'
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+      imagePullSecrets:
+        - name: harbor-secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payroll
+spec:
+  selector:
+    app: payroll
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+#      nodePort: 30080
+#  type: NodePort
