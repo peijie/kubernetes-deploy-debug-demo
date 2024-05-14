@@ -3,7 +3,7 @@ Assume docker has installed and an executable .jar file is available, the follow
 1. Create the Dockerfile
 2. Use docker build command to build the docker image
 ```
-docker build -f src/main/docker/Dockerfile -t payroll
+docker build -f src/main/docker/Dockerfile -t payroll .
 ```
 3. List the docker images on local machine
 ```
@@ -151,7 +151,7 @@ telepresence helm install traffic-manager --namespace demo datawire/telepresence
 3. Configure kubeconfi file
 ```markdown
 - cluster:
-    server: https://18.138.58.226:6443
+    server: https://xx.xxx.xx.xxx:6443
 	extensions:
     - name: telepresence.io
       extension:

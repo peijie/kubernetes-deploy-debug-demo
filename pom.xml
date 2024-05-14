@@ -61,10 +61,6 @@
 					</from>
 					<to>
 						<image>harbor.itcpdev.mrr.ste.com/demo/${project.name}:${project.version}</image>
-						<auth>
-							<username>itcpdevops</username>
-							<password>Deployment2itcp</password>
-						</auth>
 					</to>
 					<allowInsecureRegistries>true</allowInsecureRegistries>
 				</configuration>
